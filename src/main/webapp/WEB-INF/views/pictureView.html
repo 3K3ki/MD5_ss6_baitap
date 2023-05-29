@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<img id="img-of-the-day">
+<script>
+  let query = 'https://api.nasa.gov/planetary/apod?api_key=86vazUzMH3az78LyUi07RNDz7uWVQGoiOMcFlaV6'
+  let request = new XMLHttpRequest();
+  request.open('GET', query);
+  request.onload = function() {
+    if (request.status === 200) {
+      let response = JSON.parse(request.responseText);
+      document.getElementById('img-of-the-day').setAttribute('src', response.url);
+    }
+  };
+  request.send();
+</script>
+<br>
+<form action="/createP" method="post">
+<select name="mark">
+    <option th:value="1">1</option>
+    <option th:value="2">2</option>
+    <option th:value="3">3</option>
+    <option th:value="4">4</option>
+    <option th:value="5">4</option>
+</select>
+<br>
+<label>author</label><br>
+<input type="text" style="width: 400px" name="author"/><br>
+<label>feedback</label><br>
+<input type="text" style="width: 400px;height:150px" name="feedback"/><br>
+<button type="submit">Comment</button>
+</form>
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Stt</th>
+        <th scope="col">mark</th>
+        <th scope="col">author</th>
+        <th scope="col">feedback</th>
+        <th scope="col">action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="p:${list}">
+        <tr>
+            <th scope="row" th:text="${list.indexOf(p)+1}"></th>
+            <td th:text="${p.mark}"></td>
+            <td th:text="${p.author}"></td>
+            <td th:text="${p.feedback}"></td>
+            <td><a class="btn btn-danger"  th:href="@{'/delete/'+${p.id}}">delete</a></td>
+            <td><a class="btn btn-warning" th:href="@{'/edit/'+${p.id}}">edit</a></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+<!--<br>-->
+<!--    <p>+5 So awesome</p>-->
+<!--    <p th:text="${count5+' likes'}" style="margin-right: 5px"></p> <a class="btn btn-secondary" href="/up5">like</a>-->
+<!--<hr>-->
+<!--<p>+5 So awesome</p>-->
+<!--<p th:text="${count4+' likes'}" style="margin-right: 5px"></p> <a class="btn btn-secondary" href="/up4">like</a>-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
