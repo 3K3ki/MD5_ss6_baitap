@@ -10,6 +10,9 @@ public class Blog {
     private Long id;
     private String title;
     private String description;
+    @ManyToOne()
+    @JoinColumn(name = "pictureId")
+    private Picture picture;
 
     public Blog() {
     }

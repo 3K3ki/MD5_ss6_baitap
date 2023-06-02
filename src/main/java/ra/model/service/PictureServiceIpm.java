@@ -7,6 +7,8 @@ import ra.model.repository.IPictureRepository;
 
 import javax.xml.ws.Action;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class PictureServiceIpm implements IPictureService{
     @Autowired
@@ -17,17 +19,19 @@ public class PictureServiceIpm implements IPictureService{
     }
 
     @Override
-    public Picture findById(Long id) {
-        return pictureRepository.findById(id);
+    public Optional<Picture> findById(Long id) {
+        return Optional.empty();
     }
 
     @Override
-    public void save(Picture picture) {
-        pictureRepository.save(picture);
+    public Picture save(Picture picture) {
+        return null;
     }
 
     @Override
     public void remove(Long id) {
-        pictureRepository.remove(id);
+
     }
+
+
 }

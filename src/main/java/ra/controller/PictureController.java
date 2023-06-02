@@ -15,16 +15,16 @@ import java.util.List;
 public class PictureController {
 @Autowired
 private IPictureService pictureService;
-@PostMapping("/createP")
-    public String createP(@RequestParam("mark")int mark, @RequestParam("author")String author, @RequestParam("feedback")String feedback, Model model){
-    Picture p = new Picture(mark,author,feedback);
-    pictureService.save(p);
-    return "redirect:";
-}
-@GetMapping("/listPicture")
-public String showForm(Model model){
-    List<Picture> list = pictureService.findAll();
-    model.addAttribute("list",list);
-    return "/pictureView";
-}
+//@PostMapping("/createP")
+//    public String createP(@RequestParam("mark")int mark, @RequestParam("author")String author, @RequestParam("feedback")String feedback, Model model){
+//    Picture p = new Picture(mark,author,feedback);
+//    pictureService.save(p);
+//    return "redirect:";
+//}
+//@GetMapping("/listPicture")
+//public String showForm(Model model){
+//    List<Picture> list = pictureService.findAll();
+//    model.addAttribute("list",list);
+//    return "/pictureView";
+//}
 }

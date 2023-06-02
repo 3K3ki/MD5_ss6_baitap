@@ -1,10 +1,11 @@
 package ra.model.service;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface IGenericService<T> {
-    List<T> findAll();
-    T findById(Long id);
-    void save(T t);
-    void remove(Long id);
+public interface IGenericService<T, E> {
+    Iterable<T> findAll();
+    Optional<T> findById(E id);
+    T save(T t);
+    void remove(E id);
 }
